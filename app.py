@@ -170,4 +170,4 @@ else:
         
         with st.container(border=True):
             st.write("- Composition: Matte PET / Aluminium Foil / Food-Grade LDPE")
-            st.write("- Thickness Parameter: 110 to 120 Microns (High Puncture Resistance)"
+            st.write("- Thickness Parameter: 110 to 120 Microns (High Puncture Resistance)")
