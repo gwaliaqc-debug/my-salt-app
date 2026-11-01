@@ -8,7 +8,7 @@ import pandas as pd
 
 st.set_page_config(page_title="My Nani's Secret Portal", layout="centered", page_icon="🌿")
 
-# जादुई मोबाइल स्टाइलिंग (CSS Updates) - लोगो के कलर थीम (#6CC551) के साथ अलाइन किया गया
+# जादुई मोबाइल स्टाइलिंग (CSS Updates)
 st.markdown("""
     <style>
     [data-testid="stHeader"] {display: none;} 
@@ -37,12 +37,36 @@ st.markdown("""
         color: #4A9C30;
         font-weight: 700;
     }
+    
+    /* मशीनरी कार्ड स्टाइलिंग */
+    .machinery-card {
+        background-color: #F8FAFC;
+        border: 1px solid #E2E8F0;
+        border-radius: 12px;
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+    .machine-title {
+        color: #2D3748;
+        font-weight: bold;
+        font-size: 15px;
+        margin-bottom: 4px;
+    }
+    .machine-supplier {
+        color: #4A9C30;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 6px;
+    }
+    .machine-detail {
+        color: #4A5568;
+        font-size: 13px;
+        line-height: 1.4;
+    }
     </style>
     """, unsafe_allow_html=True)
 
 # 1. ऐप का मुख्य हेडर और लोगो सेक्शन
-# नोट: आप नीचे दिए गए 'YOUR_LOGO_URL' की जगह अपने इस इमेज का डायरेक्ट लिंक या पाथ लगा सकते हैं।
-# वर्तमान में यह आपके लोगो के ग्रीन शेड के साथ एक सुंदर टेक्स्ट-लोगो जेनरेट करता है।
 st.markdown("<h1 style='text-align: center; color: #6CC551; font-family: sans-serif; margin-bottom: 0px;'>My Nani's Secret ®</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; color: #4A5568; font-size: 13px; font-weight: 500; letter-spacing: 1px; margin-top: 0px;'>PRISTINE FORMULATIONS & BLENDS</p>", unsafe_allow_html=True)
 
@@ -148,43 +172,64 @@ else:
         )
 
     # ------------------------------------------------------
-    # MENU 2: MACHINERY
+    # MENU 2: MACHINERY (DEEP INTEGRATION FROM OFFICIAL DOC)
     # ------------------------------------------------------
     elif menu_selection == "🏭 Machinery":
-        st.subheader("🏭 Plant & Machinery Configuration")
-        machinery_data = [
-            {"Equipment": "Impact Pulverizer", "Parameters & Standards": "2880 RPM / Cool-Grind Mechanism"},
-            {"Equipment": "Ribbon Blender", "Parameters & Standards": "8-10 Mins Optimal Homogenization"},
-            {"Equipment": "Industrial Dehumidifier", "Parameters & Standards": "Maintains Ambient RH <40%"},
-            {"Equipment": "Moisture Analyzer", "Parameters & Standards": "Critical Quality Gate <0.40%"},
-            {"Equipment": "Continuous Band Sealer", "Parameters & Standards": "8-12 mm Heavy-Duty Seal Width"}
-        ]
-        st.dataframe(pd.DataFrame(machinery_data), hide_index=True, use_container_width=True)
-
-    # ------------------------------------------------------
-    # MENU 3: PACKAGING
-    # ------------------------------------------------------
-    elif menu_selection == "📦 Packaging":
-        st.subheader("📦 Advanced Pouch Architecture")
-        st.success("🔬 **Laminate Matrix Specs Verified**")
+        st.subheader("🏭 Trial Production & QA Equipment List")
+        st.caption("Detailed engineering specifications & authorized vendors:")
         
-        with st.container(border=True):
-            st.markdown("""
-            * 🛡️ **Composition:** Matte PET / Aluminium Foil / Food-Grade LDPE
-            * 📏 **Thickness Parameter:** 110 to 120 Microns (High Puncture Resistance)
-            * 🛑 **Barrier Efficiency:** 100% Hermetic Water-Vapor Block (Zero-Clumping Guarantee)
-            """)
-
-    # ------------------------------------------------------
-    # MENU 4: FSSAI RULES
-    # ------------------------------------------------------
-    elif menu_selection == "⚖️ FSSAI Rules":
-        st.subheader("⚖️ Regulatory & Compliance Mandates")
-        st.error("🚨 **Ammonium Chloride (Naushadar):** Legal ceiling capped strictly at **0.5% max** by weight.")
-        st.warning("📋 **Mandatory Labeling:** Posterior panel must allocate minimum **20% surface area** for the Nutritional Facts Table (Font Size ≥ 8).")
-
-    # --- LOGOUT BUTTON ---
-    st.markdown("---")
-    if st.button("🚪 Secure Logout", use_container_width=True):
-        st.session_state["logged_in"] = False
-        st.rerun()
+        # 1. Impact Pulverizer
+        st.markdown("""
+        <div class="machinery-card">
+            <div class="machine-title">1. SS 304 Impact Pulverizer / Pin Mill (1 HP / 2 HP)</div>
+            <div class="machine-supplier">📍 Recommended Suppliers: Friends & Company, Shree Engineering Works, Jas Enterprise</div>
+            <div class="machine-detail">
+                • <b>Material:</b> SS 304 Food-Grade Stainless Steel<br>
+                • <b>Capacity:</b> 10 to 20 Kg/Hr output<br>
+                • <b>Technology:</b> Cool Grinding Technology to perfectly retain delicate herb aroma<br>
+                • <b>Power:</b> Single Phase (Runs smoothly on domestic electricity)
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # 2. Mixing Vessel
+        st.markdown("""
+        <div class="machinery-card">
+            <div class="machine-title">2. SS 304 Rectangular GMP Processing Tub / Mixing Vessel</div>
+            <div class="machine-detail">
+                • <b>Material:</b> Heavy-gauge SS 304 with Mirror Finish Inside<br>
+                • <b>Volume Capacity:</b> 50 Liters to 100 Liters (Handles 20-40 Kg batch easily)
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # 3. Handling Scraper
+        st.markdown("""
+        <div class="machinery-card">
+            <div class="machine-title">3. SS 304 Food-Grade Handling Scraper / Mixing Paddle</div>
+            <div class="machine-detail">
+                • <b>Material:</b> Solid Stainless Steel 304 Construction<br>
+                • <b>Length:</b> 2 to 3 Feet long handle tailored for deep tub mixing
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # 4. Moisture Analyzer
+        st.markdown("""
+        <div class="machinery-card">
+            <div class="machine-title">4. Halogen Moisture Analyzer</div>
+            <div class="machine-supplier">📍 Approved Models: Wensar LMB-1 / Labman LHS-10 / Shimadzu MOC63u</div>
+            <div class="machine-detail">
+                • <b>Capacity:</b> 50g to 110g sample capacity<br>
+                • <b>Accuracy:</b> Ultra-precise 0.001g / 0.01% moisture detection level<br>
+                • <b>Target Gate:</b> Powered by Halogen Lamp to strictly lock salt moisture below 0.40%
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # 5. Continuous Band Sealer
+        st.markdown("""
+        <div class="machinery-card">
+            <div class="machine-title">5. Continuous Band Sealer FR-900 (Horizontal Type)</div>
+            <div class="machine-supplier">📍 Recommended Vendor: Continental Packaging</div>
+            <div class="machine-detail">
