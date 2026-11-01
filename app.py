@@ -1,38 +1,56 @@
 import streamlit as st
 import pandas as pd
 
-# ==========================================================
-# MY NANI'S SECRET - SAFE & PURE STREAMLIT NATIVE UI
-# Developed by: Ayush Kumar Agnihotri (Food Technologist)
-# ==========================================================
+# =========================================================================
+# TITLE: MY NANI'S SECRET PORTAL
+# CHIEF ARCHITECT & DEVELOPER: AYUSH KUMAR AGNIHOTRI (FOOD TECHNOLOGIST)
+# COPYRIGHT © 2026 | ALL RIGHTS RESERVED | STRICT PRIVATE ACCESS ONLY
+# =========================================================================
 
 st.set_page_config(page_title="My Nani's Secret Portal", layout="centered", page_icon="🌿")
 
-# ऐप का मुख्य हेडर और लोगो सेक्शन
-st.markdown("<h1 style='text-align: center; color: #6CC551; font-family: sans-serif; margin-bottom: 0px;'>My Nani's Secret ®</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #4A5568; font-size: 13px; font-weight: 500; letter-spacing: 1px; margin-top: 0px; text-align: center;'>PRISTINE FORMULATIONS & BLENDS</p>", unsafe_allow_html=True)
+# --- CREATOR BRANDING HEADER (PRE-LOGIN VISIBLE) ---
+st.markdown("<p style='text-align: center; color: #4A9C30; font-size: 11px; font-weight: 700; letter-spacing: 2px; margin-bottom: 0px;'>⚙️ PROPRIETARY TECHNOLOGY SYSTEM</p>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: #6CC551; font-family: sans-serif; margin-top: 0px; margin-bottom: 0px;'>My Nani's Secret ®</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #718096; font-size: 13px; font-weight: 500; margin-top: 0px;'>PRISTINE FORMULATIONS & R&D PLATFORM</p>", unsafe_allow_html=True)
 st.markdown("---")
 
-# 1. AUTHENTICATION MODULE
+# 1. SECURE AUTHENTICATION SYSTEM
 if "logged_in" not in st.session_state:
     st.session_state["logged_in"] = False
 
 if not st.session_state["logged_in"]:
-    st.subheader("🔐 Secure Access")
+    st.subheader("🔐 Secure Encrypted Access")
     with st.container(border=True):
-        user = st.text_input("User ID", placeholder="Enter official ID")
-        pas = st.text_input("Password", type="password", placeholder="••••••••")
+        st.caption("This system contains proprietary formulas. Unauthorized entry is strictly prohibited.")
+        user = st.text_input("Administrator ID", placeholder="Enter official ID")
+        pas = st.text_input("Security Access Key", type="password", placeholder="••••••••")
         
-        if st.button("Authenticate Portal 🚀", use_container_width=True, type="primary"):
+        if st.button("Authenticate System 🚀", use_container_width=True, type="primary"):
+            # आपके मास्टर क्रेडेंशियल्स - केवल आप ही इसे खोल सकते हैं
             if user == "nani" and pas == "secret":
                 st.session_state["logged_in"] = True
                 st.rerun()
             else:
-                st.error("❌ Invalid Credentials. Please try again.")
+                st.error("❌ Access Denied: Invalid Security Key or Administrator ID.")
+                
+    # लॉगिन स्क्रीन के नीचे आपका वाटरमार्क सिग्नेचर
+    st.markdown("<br><p style='text-align: center; color: #A0AEC0; font-size: 12px; font-weight: 500;'>Engineered & Maintained by:<br><span style='color: #4A9C30; font-weight: bold; font-size: 13px;'>Ayush Kumar Agnihotri</span><br>Food Technologist</p>", unsafe_allow_html=True)
+
 else:
+    # --- ULTRA PREMIUM CREATOR PANEL ON TOP IN HOME PAGE ---
+    with st.container(border=True):
+        cols = st.columns([1, 4])
+        with cols[0]:
+            st.markdown("<h1 style='text-align: center; margin: 0; padding: 0;'>👨‍🔬</h1>", unsafe_allow_html=True)
+        with cols[1]:
+            st.markdown("<p style='margin: 0; padding: 0; font-size: 11px; color: #718096; font-weight: bold; letter-spacing: 1px;'>CHIEF PLANT CONTROLLER</p>", unsafe_allow_html=True)
+            st.markdown("<h4 style='margin: 0; padding: 0; color: #2D3748; font-weight: 800;'>Ayush Kumar Agnihotri</h4>", unsafe_allow_html=True)
+            st.markdown("<p style='margin: 0; padding: 0; font-size: 12px; color: #4A9C30; font-weight: 600;'>Food Technologist & R&D Lead</p>", unsafe_allow_html=True)
+
     # --- WHATSAPP / INSTAGRAM STYLE NATIVE MENU BUTTONS ---
     menu_selection = st.radio(
-        "📱 PORTAL SECTIONS",
+        "📱 SYSTEM MODULES",
         ["🧮 Calculator", "🏭 Machinery", "📦 Packaging", "⚖️ FSSAI Rules"],
         horizontal=True
     )
@@ -158,33 +176,3 @@ else:
             st.info("📍 Recommended Supplier: Shanti Scientific Traders")
             st.write("• **Industry Standard:** SS 304 Standard Test Sieves (8-inch Diameter)")
             st.write("• **Material:** Food-Grade Stainless Steel 304")
-            st.write("• **Mesh Sizes Grid:** 30 Mesh, 40 Mesh, 60 Mesh, and 80 Mesh for strict particle uniformity")
-            
-        with st.container(border=True):
-            st.markdown("### 7. Analytical Balance")
-            st.info("📍 Industry Approved: High-Precision Electronic Lab Balance (CAS / Wensar / Essae)")
-            st.write("• **Max Capacity:** 200g to 600g range")
-            st.write("• **Readability:** Milligram level precision (0.01g or 0.001g) for accurate expensive herb costing")
-            
-        with st.container(border=True):
-            st.markdown("### 8. Room Dehumidifier")
-            st.info("📍 Approved Equipment: Heavy-Duty Dehumidifier (White Westinghouse / Origin 15-20L)")
-            st.write("• **Moisture Extraction:** 15 to 20 Liters condensation removal per day")
-            st.write("• **Target Humidity:** Strict environmental control fixed at 40% RH to prevent salt clumping")
-
-    # ------------------------------------------------------
-    # MENU 3: PACKAGING
-    # ------------------------------------------------------
-    elif menu_selection == "📦 Packaging":
-        st.subheader("📦 Advanced Pouch Architecture")
-        st.success("🔬 **Laminate Matrix Specs Verified**")
-        
-        with st.container(border=True):
-            st.markdown("""
-            * 🛡️ **Composition:** Matte PET / Aluminium Foil / Food-Grade LDPE
-            * 📏 **Thickness Parameter:** 110 to 120 Microns (High Puncture Resistance)
-            * 🛑 **Barrier Efficiency:** 100% Hermetic Water-Vapor Block (Zero-Clumping Guarantee)
-            """)
-
-    # ------------------------------------------------------
-    # MENU 4: FSSAI RULES
