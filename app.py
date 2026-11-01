@@ -2,85 +2,28 @@ import streamlit as st
 import pandas as pd
 
 # ==========================================================
-# MY NANI'S SECRET - ULTRA PREMIUM FOOD-TECH NATIVE UI
+# MY NANI'S SECRET - SAFE & PURE STREAMLIT NATIVE UI
 # Developed by: Ayush Kumar Agnihotri (Food Technologist)
 # ==========================================================
 
 st.set_page_config(page_title="My Nani's Secret Portal", layout="centered", page_icon="🌿")
 
-# जादुई मोबाइल स्टाइलिंग (CSS Updates)
-st.markdown("""
-    <style>
-    [data-testid="stHeader"] {display: none;} 
-    .reportview-container .main .block-container { padding-top: 0.5rem; }
-    div.block-container { padding-top: 1rem; max-width: 450px !important; margin: 0 auto; } 
-    
-    /* बटन और कार्ड्स को प्रीमियम ऐप लुक देने के लिए */
-    .stButton>button {
-        border-radius: 14px;
-        font-weight: bold;
-        background-color: #6CC551 !important;
-        color: white !important;
-        border: none;
-        transition: 0.3s;
-    }
-    .stButton>button:hover {
-        background-color: #5ab340 !important;
-        transform: scale(1.02);
-    }
-    div[data-testid="stNotification"] {
-        border-radius: 14px;
-    }
-    
-    /* कस्टमाइज़्ड सब-हेडिंग्स */
-    h3 {
-        color: #4A9C30;
-        font-weight: 700;
-    }
-    
-    /* मशीनरी कार्ड स्टाइलिंग */
-    .machinery-card {
-        background-color: #F8FAFC;
-        border: 1px solid #E2E8F0;
-        border-radius: 12px;
-        padding: 12px;
-        margin-bottom: 12px;
-    }
-    .machine-title {
-        color: #2D3748;
-        font-weight: bold;
-        font-size: 15px;
-        margin-bottom: 4px;
-    }
-    .machine-supplier {
-        color: #4A9C30;
-        font-size: 12px;
-        font-weight: 600;
-        margin-bottom: 6px;
-    }
-    .machine-detail {
-        color: #4A5568;
-        font-size: 13px;
-        line-height: 1.4;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-# 1. ऐप का मुख्य हेडर और लोगो सेक्शन
+# ऐप का मुख्य हेडर और लोगो सेक्शन
 st.markdown("<h1 style='text-align: center; color: #6CC551; font-family: sans-serif; margin-bottom: 0px;'>My Nani's Secret ®</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #4A5568; font-size: 13px; font-weight: 500; letter-spacing: 1px; margin-top: 0px;'>PRISTINE FORMULATIONS & BLENDS</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #4A5568; font-size: 13px; font-weight: 500; letter-spacing: 1px; margin-top: 0px; text-align: center;'>PRISTINE FORMULATIONS & BLENDS</p>", unsafe_allow_html=True)
+st.markdown("---")
 
-# 2. AUTHENTICATION MODULE
+# 1. AUTHENTICATION MODULE
 if "logged_in" not in st.session_state:
     st.session_state["logged_in"] = False
 
 if not st.session_state["logged_in"]:
-    st.markdown("### 🔐 Secure Access")
+    st.subheader("🔐 Secure Access")
     with st.container(border=True):
         user = st.text_input("User ID", placeholder="Enter official ID")
         pas = st.text_input("Password", type="password", placeholder="••••••••")
         
-        if st.button("Authenticate Portal 🚀", use_container_width=True):
+        if st.button("Authenticate Portal 🚀", use_container_width=True, type="primary"):
             if user == "nani" and pas == "secret":
                 st.session_state["logged_in"] = True
                 st.rerun()
@@ -126,7 +69,7 @@ else:
         }
         
         # 💰 COST ESTIMATOR INTERFACE
-        st.markdown("### 💰 Ingredient Price Log (₹/kg)")
+        st.subheader("💰 Ingredient Price Log (₹/kg)")
         report_data = []
         total_cost = 0.0
         
@@ -137,7 +80,7 @@ else:
                 price_dict[ing] = st.number_input(f"{ing} (₹/kg):", min_value=0.0, value=60.0, step=5.0, key=f"price_{ing}")
 
         # गणना और डिस्प्ले
-        st.markdown("### 📋 Formula Breakdown & Live Costing")
+        st.subheader("📋 Formula Breakdown & Live Costing")
         with st.container(border=True):
             for ing, pct, status in recipes[salt_type]:
                 calc_wt = weight * pct
@@ -168,7 +111,8 @@ else:
             data=csv_data,
             file_name=f"{salt_type.lower().replace(' ', '_')}_batch_sheet.csv",
             mime="text/csv",
-            use_container_width=True
+            use_container_width=True,
+            type="primary"
         )
 
     # ------------------------------------------------------
@@ -178,58 +122,69 @@ else:
         st.subheader("🏭 Trial Production & QA Equipment List")
         st.caption("Detailed engineering specifications & authorized vendors:")
         
-        # 1. Impact Pulverizer
-        st.markdown("""
-        <div class="machinery-card">
-            <div class="machine-title">1. SS 304 Impact Pulverizer / Pin Mill (1 HP / 2 HP)</div>
-            <div class="machine-supplier">📍 Recommended Suppliers: Friends & Company, Shree Engineering Works, Jas Enterprise</div>
-            <div class="machine-detail">
-                • <b>Material:</b> SS 304 Food-Grade Stainless Steel<br>
-                • <b>Capacity:</b> 10 to 20 Kg/Hr output<br>
-                • <b>Technology:</b> Cool Grinding Technology to perfectly retain delicate herb aroma<br>
-                • <b>Power:</b> Single Phase (Runs smoothly on domestic electricity)
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+        with st.container(border=True):
+            st.markdown("### 1. SS 304 Impact Pulverizer / Pin Mill (1 HP / 2 HP)")
+            st.info("📍 Recommended Suppliers: Friends & Company, Shree Engineering Works, Jas Enterprise")
+            st.write("• **Material:** SS 304 Food-Grade Stainless Steel")
+            st.write("• **Capacity:** 10 to 20 Kg/Hr output")
+            st.write("• **Technology:** Cool Grinding Technology to perfectly retain delicate herb aroma")
+            st.write("• **Power:** Single Phase (Runs smoothly on domestic electricity)")
+            
+        with st.container(border=True):
+            st.markdown("### 2. SS 304 Rectangular GMP Processing Tub / Mixing Vessel")
+            st.write("• **Material:** Heavy-gauge SS 304 with Mirror Finish Inside")
+            st.write("• **Volume Capacity:** 50 Liters to 100 Liters (Handles 20-40 Kg batch easily)")
+            
+        with st.container(border=True):
+            st.markdown("### 3. SS 304 Food-Grade Handling Scraper / Mixing Paddle")
+            st.write("• **Material:** Solid Stainless Steel 304 Construction")
+            st.write("• **Length:** 2 to 3 Feet long handle tailored for deep tub mixing")
+            
+        with st.container(border=True):
+            st.markdown("### 4. Halogen Moisture Analyzer")
+            st.info("📍 Approved Models: Wensar LMB-1 / Labman LHS-10 / Shimadzu MOC63u")
+            st.write("• **Capacity:** 50g to 110g sample capacity")
+            st.write("• **Accuracy:** Ultra-precise 0.001g / 0.01% moisture detection level")
+            st.write("• **Target Gate:** Powered by Halogen Lamp to strictly lock salt moisture below 0.40%")
+            
+        with st.container(border=True):
+            st.markdown("### 5. Continuous Band Sealer FR-900 (Horizontal Type)")
+            st.info("📍 Recommended Vendor: Continental Packaging")
+            st.write("• **Sealing Width:** 8mm to 12mm heavy-duty airtight hermetic lock")
+            st.write("• **Speed & Temp:** 0-12 meters/minute with precision temperature controller up to 300°C")
+            
+        with st.container(border=True):
+            st.markdown("### 6. Laboratory Test Sieve Set (दानों का साइज एक बराबर करने के लिए)")
+            st.info("📍 Recommended Supplier: Shanti Scientific Traders")
+            st.write("• **Industry Standard:** SS 304 Standard Test Sieves (8-inch Diameter)")
+            st.write("• **Material:** Food-Grade Stainless Steel 304")
+            st.write("• **Mesh Sizes Grid:** 30 Mesh, 40 Mesh, 60 Mesh, and 80 Mesh for strict particle uniformity")
+            
+        with st.container(border=True):
+            st.markdown("### 7. Analytical Balance")
+            st.info("📍 Industry Approved: High-Precision Electronic Lab Balance (CAS / Wensar / Essae)")
+            st.write("• **Max Capacity:** 200g to 600g range")
+            st.write("• **Readability:** Milligram level precision (0.01g or 0.001g) for accurate expensive herb costing")
+            
+        with st.container(border=True):
+            st.markdown("### 8. Room Dehumidifier")
+            st.info("📍 Approved Equipment: Heavy-Duty Dehumidifier (White Westinghouse / Origin 15-20L)")
+            st.write("• **Moisture Extraction:** 15 to 20 Liters condensation removal per day")
+            st.write("• **Target Humidity:** Strict environmental control fixed at 40% RH to prevent salt clumping")
+
+    # ------------------------------------------------------
+    # MENU 3: PACKAGING
+    # ------------------------------------------------------
+    elif menu_selection == "📦 Packaging":
+        st.subheader("📦 Advanced Pouch Architecture")
+        st.success("🔬 **Laminate Matrix Specs Verified**")
         
-        # 2. Mixing Vessel
-        st.markdown("""
-        <div class="machinery-card">
-            <div class="machine-title">2. SS 304 Rectangular GMP Processing Tub / Mixing Vessel</div>
-            <div class="machine-detail">
-                • <b>Material:</b> Heavy-gauge SS 304 with Mirror Finish Inside<br>
-                • <b>Volume Capacity:</b> 50 Liters to 100 Liters (Handles 20-40 Kg batch easily)
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        # 3. Handling Scraper
-        st.markdown("""
-        <div class="machinery-card">
-            <div class="machine-title">3. SS 304 Food-Grade Handling Scraper / Mixing Paddle</div>
-            <div class="machine-detail">
-                • <b>Material:</b> Solid Stainless Steel 304 Construction<br>
-                • <b>Length:</b> 2 to 3 Feet long handle tailored for deep tub mixing
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        # 4. Moisture Analyzer
-        st.markdown("""
-        <div class="machinery-card">
-            <div class="machine-title">4. Halogen Moisture Analyzer</div>
-            <div class="machine-supplier">📍 Approved Models: Wensar LMB-1 / Labman LHS-10 / Shimadzu MOC63u</div>
-            <div class="machine-detail">
-                • <b>Capacity:</b> 50g to 110g sample capacity<br>
-                • <b>Accuracy:</b> Ultra-precise 0.001g / 0.01% moisture detection level<br>
-                • <b>Target Gate:</b> Powered by Halogen Lamp to strictly lock salt moisture below 0.40%
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        # 5. Continuous Band Sealer
-        st.markdown("""
-        <div class="machinery-card">
-            <div class="machine-title">5. Continuous Band Sealer FR-900 (Horizontal Type)</div>
-            <div class="machine-supplier">📍 Recommended Vendor: Continental Packaging</div>
-            <div class="machine-detail">
+        with st.container(border=True):
+            st.markdown("""
+            * 🛡️ **Composition:** Matte PET / Aluminium Foil / Food-Grade LDPE
+            * 📏 **Thickness Parameter:** 110 to 120 Microns (High Puncture Resistance)
+            * 🛑 **Barrier Efficiency:** 100% Hermetic Water-Vapor Block (Zero-Clumping Guarantee)
+            """)
+
+    # ------------------------------------------------------
+    # MENU 4: FSSAI RULES
