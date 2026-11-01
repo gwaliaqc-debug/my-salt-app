@@ -27,14 +27,12 @@ if not st.session_state["logged_in"]:
         pas = st.text_input("Security Access Key", type="password", placeholder="••••••••")
         
         if st.button("Authenticate System 🚀", use_container_width=True, type="primary"):
-            # आपके मास्टर क्रेडेंशियल्स - केवल आप ही इसे खोल सकते हैं
             if user == "nani" and pas == "secret":
                 st.session_state["logged_in"] = True
                 st.rerun()
             else:
                 st.error("❌ Access Denied: Invalid Security Key or Administrator ID.")
                 
-    # लॉगिन स्क्रीन के नीचे आपका वाटरमार्क सिग्नेचर
     st.markdown("<br><p style='text-align: center; color: #A0AEC0; font-size: 12px; font-weight: 500;'>Engineered & Maintained by:<br><span style='color: #4A9C30; font-weight: bold; font-size: 13px;'>Ayush Kumar Agnihotri</span><br>Food Technologist</p>", unsafe_allow_html=True)
 
 else:
@@ -48,7 +46,7 @@ else:
             st.markdown("<h4 style='margin: 0; padding: 0; color: #2D3748; font-weight: 800;'>Ayush Kumar Agnihotri</h4>", unsafe_allow_html=True)
             st.markdown("<p style='margin: 0; padding: 0; font-size: 12px; color: #4A9C30; font-weight: 600;'>Food Technologist & R&D Lead</p>", unsafe_allow_html=True)
 
-    # --- WHATSAPP / INSTAGRAM STYLE NATIVE MENU BUTTONS ---
+    # --- SYSTEM MODULES NAVIGATION ---
     menu_selection = st.radio(
         "📱 SYSTEM MODULES",
         ["🧮 Calculator", "🏭 Machinery", "📦 Packaging", "⚖️ FSSAI Rules"],
@@ -66,7 +64,6 @@ else:
             salt_type = st.selectbox("Select Blend Profile:", ["Nani Namak", "Buknu", "Sheetal Namak"])
             weight = st.number_input("Enter Batch Weight (kg):", min_value=1.0, value=100.0, step=10.0)
         
-        # मास्टर रेसिपी मैट्रिक्स
         recipes = {
             "Nani Namak": [
                 ("White Salt", 0.45, "🌿"), ("Sendha Namak", 0.25, "🌿"), ("Kala Namak", 0.15, "🌿"),
@@ -86,7 +83,6 @@ else:
             ]
         }
         
-        # 💰 COST ESTIMATOR INTERFACE
         st.subheader("💰 Ingredient Price Log (₹/kg)")
         report_data = []
         total_cost = 0.0
@@ -97,7 +93,6 @@ else:
             for ing, pct, _ in recipes[salt_type]:
                 price_dict[ing] = st.number_input(f"{ing} (₹/kg):", min_value=0.0, value=60.0, step=5.0, key=f"price_{ing}")
 
-        # गणना और डिस्प्ले
         st.subheader("📋 Formula Breakdown & Live Costing")
         with st.container(border=True):
             for ing, pct, status in recipes[salt_type]:
@@ -117,10 +112,8 @@ else:
                     "Total Cost (₹)": round(item_cost, 2)
                 })
         
-        # कुल लागत डिस्प्ले
         st.metric(label="💵 Grand Production Cost for Batch", value=f"₹{total_cost:,.2f}")
         
-        # 📦 CSV EXPORT MODULE
         df_report = pd.DataFrame(report_data)
         csv_data = df_report.to_csv(index=False).encode('utf-8')
         
@@ -134,7 +127,7 @@ else:
         )
 
     # ------------------------------------------------------
-    # MENU 2: MACHINERY (DEEP INTEGRATION FROM OFFICIAL DOC)
+    # MENU 2: MACHINERY
     # ------------------------------------------------------
     elif menu_selection == "🏭 Machinery":
         st.subheader("🏭 Trial Production & QA Equipment List")
@@ -176,3 +169,8 @@ else:
             st.info("📍 Recommended Supplier: Shanti Scientific Traders")
             st.write("• **Industry Standard:** SS 304 Standard Test Sieves (8-inch Diameter)")
             st.write("• **Material:** Food-Grade Stainless Steel 304")
+            st.write("• **Mesh Sizes Grid:** 30 Mesh, 40 Mesh, 60 Mesh, and 80 Mesh for strict particle uniformity")
+            
+        with st.container(border=True):
+            st.markdown("### 7. Analytical Balance")
+            st.info("📍 Industry Approved: High-Precision Electronic Lab Balance (CAS / Wensar / Essae)")
