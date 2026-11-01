@@ -4,7 +4,7 @@ import pandas as pd
 # =========================================================================
 # TITLE: MY NANI'S SECRET PORTAL (ENTERPRISE CONFIGURATION)
 # CHIEF ARCHITECT & DEVELOPER: AYUSH KUMAR AGNIHOTRI (FOOD TECHNOLOGIST)
-# VERSION: 3.0 (GOOGLE SHEET INTEGRATION & LIVE P&L AUTOMATION)
+# VERSION: 3.1 (SAFE GOOGLE SHEET INTEGRATION & P&L ENGINE)
 # COPYRIGHT (c) 2026 | STRICT PRIVATE ACCESS ONLY
 # =========================================================================
 
@@ -20,25 +20,32 @@ GSHEET_URL = "https://google.com"
 
 @st.cache_data(ttl=300)
 def load_live_sheet_data(url):
+    backup_data = {
+        "Ingredient": [
+            "White Salt", "Sendha Namak", "Kala Namak", "Jeera", "Kali Mirch", 
+            "Lal Mirch", "Garam Masala", "Hing", "Base Salt Mix", 
+            "Badi and Chhoti Harad Blend", "Dry Amla Powder", "Pure Turmeric / Haldi", 
+            "Digestive Herb Blend", "Pungent Bio-Enhancers", "Mustard Oil", 
+            "Naushadar [Food-Grade]", "Aamzhor Namak Mix", "Pudina Powder", 
+            "Saunf Powder", "Mishri Powder", "Sour Blend", "Jaljeera", "Naushadar"
+        ],
+        "Rate": [20.0, 60.0, 50.0, 250.0, 600.0, 300.0, 400.0, 1500.0, 40.0, 350.0, 200.0, 180.0, 300.0, 400.0, 170.0, 80.0, 120.0, 250.0, 220.0, 100.0, 150.0, 180.0, 80.0]
+    }
     try:
-        return pd.read_csv(url)
+        df = pd.read_csv(url)
+        # यह चेक करने के लिए कि कॉलम सही हैं या नहीं
+        if "Ingredient" in df.columns and "Rate" in df.columns:
+            return df
+        return pd.DataFrame(backup_data)
     except:
-        # यहाँ पर फिक्स्ड डेटा पूरी तरह सही कर दिया गया है
-        backup_data = {
-            "Ingredient": [
-                "White Salt", "Sendha Namak", "Kala Namak", "Jeera", "Kali Mirch", 
-                "Lal Mirch", "Garam Masala", "Hing", "Base Salt Mix", 
-                "Badi and Chhoti Harad Blend", "Dry Amla Powder", "Pure Turmeric / Haldi", 
-                "Digestive Herb Blend", "Pungent Bio-Enhancers", "Mustard Oil", 
-                "Naushadar [Food-Grade]", "Aamzhor Namak Mix", "Pudina Powder", 
-                "Saunf Powder", "Mishri Powder", "Sour Blend", "Jaljeera", "Naushadar"
-            ],
-            "Rate": [20.0, 60.0, 50.0, 250.0, 600.0, 300.0, 400.0, 1500.0, 40.0, 350.0, 200.0, 180.0, 300.0, 400.0, 170.0, 80.0, 120.0, 250.0, 220.0, 100.0, 150.0, 180.0, 80.0]
-        }
         return pd.DataFrame(backup_data)
 
 live_rates_df = load_live_sheet_data(GSHEET_URL)
-rates_dict = pd.Series(live_rates_df.Rate.values, index=live_rates_df.Ingredient.values).to_dict()
+
+# क्रैश प्रूफ डिक्शनरी मैपिंग
+rates_dict = {}
+for idx, row in live_rates_df.iterrows():
+    rates_dict[str(row["Ingredient"])] = float(row["Rate"])
 
 if "logged_in" not in st.session_state:
     st.session_state["logged_in"] = False
@@ -232,7 +239,6 @@ else:
             st.write("- Composition: Matte PET / Aluminium Foil / Food-Grade LDPE")
             st.write("- Thickness Parameter: 110 to 120 Microns (High Puncture Resistance)")
             st.write("- Barrier Efficiency: 100% Hermetic Water-Vapor Block (Zero-Clumping Guarantee)")
-            st.caption("Designed specifically for high-hygroscopic spice and salt formulations.")
 
     with tab5:
         st.subheader("Regulatory and Compliance Mandates")
