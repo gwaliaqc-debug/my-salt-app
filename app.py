@@ -14,11 +14,11 @@ if not st.session_state["logged_in"]:
             st.session_state["logged_in"] = True
             st.rerun()
         else:
-            st.error("गलत आईडी या पासवर्ड भाई!")
+            st.error("Invalid ID or Password!")
 else:
-    st.success("लॉगिन सफल! स्वागत है आयुष कंसल्टेंसी में।")
-    salt_type = st.selectbox("नमक का प्रकार चुनें:", ["Nani Namak", "Buknu", "Sheetal Namak"])
-    weight = st.number_input("कुल वजन डालें (kg):", min_value=1.0, value=100.0)
+    st.success(" Login Successful! Welcome to Ayush Consultancy.")
+    salt_type = salt_type = st.selectbox("Select Salt Type:", ["Nani Namak", "Buknu", "Sheetal Namak"])
+    weight = st.number_input("Enter Total Weight (kg):", min_value=1.0, value=100.0)
     
     if salt_type == "Nani Namak":
         st.write(f"• सादा नमक: {weight * 0.45} kg")
