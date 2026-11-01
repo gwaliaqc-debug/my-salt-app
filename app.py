@@ -174,12 +174,3 @@ else:
             st.write("- Barrier Efficiency: 100% Hermetic Water-Vapor Block (Zero-Clumping Guarantee)")
 st.caption("Designed specifically for high-hygroscopic spice and salt formulations to prevent moisture ingress.")
 with tab4:
-st.subheader("Regulatory and Compliance Mandates")
-with st.container(border=True):
-st.error("Ammonium Chloride (Naushadar): Legal ceiling capped strictly at 0.5% max by weight under FSSAI category rules.")
-st.warning("Mandatory Labeling: Posterior display panel must allocate minimum 20% surface area for the Nutritional Facts Table (Font Size >= 8).")
-st.info("Ensure clear categorization under Proprietary Food / Spice Blends where applicable.")
-st.markdown("---")
-if st.button("Secure Logout", use_container_width=True):
-st.session_state["logged_in"] = False
-st.rerun()
