@@ -40,7 +40,6 @@ else:
         st.markdown("<p style='margin: 0; padding: 0; font-size: 12px; color: #4A9C30; font-weight: 600;'>Food Technologist & R&D Lead</p>", unsafe_allow_html=True)
 
     tab1, tab2, tab3, tab4 = st.tabs(["Calculator", "Machinery", "Packaging", "FSSAI Rules"])
-    
     with tab1:
         st.subheader("Batch Formulation Panel")
         
@@ -109,7 +108,6 @@ else:
             use_container_width=True,
             type="primary"
         )
-
     with tab2:
         st.subheader("Trial Production and QA Equipment List")
         st.caption("Detailed engineering specifications and authorized vendors:")
@@ -171,3 +169,18 @@ else:
         with st.container(border=True):
             st.write("- Composition: Matte PET / Aluminium Foil / Food-Grade LDPE")
             st.write("- Thickness Parameter: 110 to 120 Microns (High Puncture Resistance)")
+            st.write("- Barrier Efficiency: 100% Hermetic Water-Vapor Block (Zero-Clumping Guarantee)")
+            st.caption("Designed specifically for high-hygroscopic spice and salt formulations to prevent moisture ingress.")
+
+    with tab4:
+        st.subheader("Regulatory and Compliance Mandates")
+        
+        with st.container(border=True):
+            st.error("Ammonium Chloride (Naushadar): Legal ceiling capped strictly at 0.5% max by weight under FSSAI category rules.")
+            st.warning("Mandatory Labeling: Posterior display panel must allocate minimum 20% surface area for the Nutritional Facts Table (Font Size >= 8).")
+            st.info("Ensure clear categorization under Proprietary Food / Spice Blends where applicable.")
+
+    st.markdown("---")
+    if st.button("Secure Logout", use_container_width=True):
+        st.session_state["logged_in"] = False
+        st.rerun()
