@@ -80,7 +80,7 @@ if not st.session_state["logged_in"]:
         st.subheader("🔐 Secure Client & Admin Login")
         st.caption("Authorized access only. Contains proprietary R&D formulations & vendor matrix.")
         user = st.text_input("Administrator ID", placeholder="Enter ID")
-             pas = st.text_input("Security Access Key", type="default", placeholder="••••••••")
+        pas = st.text_input("Security Access Key", type="default", placeholder="••••••••")
 
         
         if st.button("Authenticate & Launch Portal", use_container_width=True, type="primary"):
