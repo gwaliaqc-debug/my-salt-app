@@ -183,11 +183,8 @@ else:
         k1.metric("Gross Revenue", f"₹{revenue:,.0f}")
         k2.metric("Total Opex + COGS", f"₹{total_exp:,.0f}")
         k3.metric("Net EBITDA Profit", f"₹{net_profit:,.0f}", f"{margin:.1f}% Margin")
-
         st.table([
-            {"Particulars": "1. Gross Sales Revenue", "Amount (INR)": f"₹{revenue:,.2f}"},
-            {"Particulars": "2. Raw Material Cost (COGS)", "Amount (INR)": f"- ₹{cogs:,.2f}"},
-                    st.table([
+
             {"Particulars": "1. Gross Sales Revenue", "Amount (INR)": f"₹{revenue:,.2f}"},
             {"Particulars": "2. Raw Material Cost (COGS)", "Amount (INR)": f"- ₹{cogs:,.2f}"},
             {"Particulars": "3. Plant Utilities & Skilled Labor", "Amount (INR)": f"- ₹{utilities:,.2f}"},
